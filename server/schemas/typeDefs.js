@@ -62,12 +62,13 @@ const typeDefs = gql`
     }
 
     type Query {
-
+        user(username: String!): User
+        budget(username: String): [Budget]
     }
 
     type Mutation {
 
     }
 `
-//^^^need queries and mutations ^^^
+//^^^need queries and mutations, both are incomplete! ^^^
 module.exports = typeDefs;
