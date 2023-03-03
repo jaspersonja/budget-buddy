@@ -21,4 +21,12 @@ Budget Buddy is an app that allows you to see your net income all in one place. 
 
 This app will allow you to see all of your finances in one place that does what most apps fail to do, factor in taxes! 
 
+## Credits
+
+Thank you to the University of Arizona for educating us and giving us the tools to be succesfull on our journey as software developers! The past 6 months have been a challenge but we have learned so much that we are going to use in our careers moving forward. 
+
+## License
+
+MIT License
+
 [Heroku App](https://shielded-dawn-35002.herokuapp.com/)
