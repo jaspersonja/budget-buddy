@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 //do we need this below?
-app.use(routes);
+// app.use(routes);
 
 
 //change this path "../client/build/index.html"?
