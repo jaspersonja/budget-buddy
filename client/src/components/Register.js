@@ -1,14 +1,14 @@
 import { Button, Form, Input } from 'antd';
 
-export default function Login() {
-    const handleLogin = () => {
+export default function Register() {
+    const handleRegister = () => {
 
     };
 
     return (
         <>
         <Form
-            name='login'
+            name='register'
             labelCol={{
                 span: 8,
             }}
@@ -22,11 +22,22 @@ export default function Login() {
                 remember: true,
             }}
         >
+            
             <Form.Item
                 label='Email'
                 name='email'
                 rules={[
                     {required: true, message: 'Please input your email!'}
+                ]}
+            >
+                <Input/>
+            </Form.Item>
+
+            <Form.Item
+                label='Username'
+                name='username'
+                rules={[
+                    {required: true, message: 'Please input your username!'}
                 ]}
             >
                 <Input/>

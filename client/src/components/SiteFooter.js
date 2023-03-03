@@ -1,10 +1,10 @@
 import {Col, Divider, Row, List, Typography} from 'antd'
 
-const SiteFooter = () => {
+export default function SiteFooter() {
     const {Text, Link} = Typography;
     return (
         <>
-            <Row justify="space-between" align="top">
+            <Row justify="space-around" align="top">
               <Col span={6}>
                 <Divider orientation='left'>Our Githubs</Divider>
                 <List bordered={false}>
@@ -23,5 +23,3 @@ const SiteFooter = () => {
         </>
     )
 }
-
-export default SiteFooter;

@@ -1,8 +1,7 @@
-import React, {useState} from 'react';
-import {Typography, Layout, Row, Col, Image} from 'antd';
+import React from 'react';
+import {Layout,} from 'antd';
 import NotLoggedHome from '../components/NotLoggedHome';
 const {Content} = Layout;
-const {Title, Text, Link} = Typography;
 
 const Home = () => {
 
