@@ -42,6 +42,7 @@ const resolvers = {
     },
 
     Mutation: {
+        addUser: async (parent, { username })
 
 
     }
