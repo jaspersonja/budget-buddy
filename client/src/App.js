@@ -10,13 +10,10 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import {Layout, Typography} from 'antd'
+import {Layout} from 'antd'
 import Home from './pages/Home';
 import Profile from './pages/Profile';
-import AddBudget from './components/AddBudget';
-import Login from './components/Login';
 import Navbar from './components/Navbar';
-import Signup from './components/Signup';
 import SiteFooter from './components/SiteFooter';
 
 // main graphQL API endpoint

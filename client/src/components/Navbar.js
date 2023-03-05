@@ -1,7 +1,9 @@
 import React from 'react';
-import {Typography, Menu} from 'antd';
+import {Menu, Modal} from 'antd';
 import {HomeOutlined, MehOutlined, LoginOutlined, BookOutlined} from '@ant-design/icons'
 import {useState} from 'react'
+import Login from './Login'
+import Register from './Register'
 
 export default function Nav() {
  //const linkStyle = { border: '1px black', padding: '5px' };
@@ -28,12 +30,37 @@ const navItems = [
   }
 ]
 
-const [current, setCurrent] = useState('mail');
+const [current, setCurrent] = useState('home');
+const [open, setOpen] = useState(false);
+
+const showModal = () => {
+  setOpen(true);
+}
+
+const closeModal = () => {
+  setOpen(false);
+}
+
 const onClick = (e) => {
-  console.log('click ', e);
-  setCurrent(e.key);
+  setCurrent(e.key)
+  if (e.key === 'login' || e.key === 'register') {
+    showModal()
+  }
 };
+
+
+
   return (
+    <>
     <Menu style={{background: '#36cfc9'}} onClick={onClick} selectedKeys={[current]} mode="horizontal" items={navItems} />
+    <Modal
+      open={open}
+      title="Login"
+      onCancel={closeModal}
+      footer={[]}
+    >
+      {current === 'login' ? <Login/> : <Register/>}
+    </Modal>
+    </>
   );
 }
