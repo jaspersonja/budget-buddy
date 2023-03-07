@@ -7,7 +7,41 @@ export const ADD_USER = gql`
             username
             email
             password
-            budget
+            budget {
+                income
+                bills{
+                    _id
+                    billName
+                    billAmount
+                }
+                shopping{
+                    _id
+                    shoppingItem
+                    shoppingItemCost
+                }
+                grocery{
+                    _id
+                    groceryItem
+                    groceryItemCost
+                }
+                pets{
+                    _id
+                    petName
+                    petFood
+                    petCost
+                }
+                dining{
+                    _id
+                    diningRestaurant
+                    diningCost
+                }
+                RecurringInvestment{
+                    _id
+                    brokerName
+                    brokerageDeposit
+                }
+
+            }
         }
     }
 `;
@@ -17,12 +51,37 @@ export const ADD_BUDGET = gql`
         addBudget(BudgetId: $BudgetId, Budget: $Budget){
             _id
             income
-            bills
-            shopping
-            groceries
-            pet
-            dining
-            recurringInvestments
+            bills{
+                _id
+                billName
+                billAmount
+            }
+            shopping{
+                _id
+                shoppingItem
+                shoppingItemCost
+            }
+            grocery{
+                _id
+                groceryItem
+                groceryItemCost
+            }
+            pets{
+                _id
+                petName
+                petFood
+                petCost
+            }
+            dining{
+                _id
+                diningRestaurant
+                diningCost
+            }
+            RecurringInvestment{
+                _id
+                brokerName
+                brokerageDeposit
+            }
         }
     }
 `;
@@ -63,6 +122,7 @@ export const ADD_PETS = gql`
             _id
             petName
             petFood
+            petCost
         }
     }
 `;
@@ -72,7 +132,7 @@ export const ADD_DINING = gql`
        addDining(DiningId: $DiningId, Dining: $Dining){
             _id
             diningRestaurant
-            diningBill
+            diningCost
         }
     }
 `;
@@ -93,5 +153,18 @@ export const ADD_AUTH = gql`
             token
             user
         }
+    }
+`;
+
+export const LOGIN_USER = gql`
+    mutation login($email: String!, $password: String!){
+        login(email: $email, password: $password){
+            token
+            profile{
+                _id
+                username
+            }
+        }
+
     }
 `;
