@@ -4,39 +4,39 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        User: async (parent, { username }) => {
+        me: async (parent, { username }) => {
             return User.findOne({ username }).populate('budget')
         },
 
         //budget and down is work in progress
-        Budget: async (parent, { BudgetId }) => {
-            const params = BudgetId ? {BudgetId} : {};
-            return Budget.find(params).sort()
-        },
-        Bills: async (parent, { BillsId }) => {
-            const params = BillsId ? {BillsId} : {};
-            return Bills.find(params).sort()
-        },
-        Shopping: async (parent, { ShoppingId }) => {
-            const params = ShoppingId ? {ShoppingId} : {};
-            return Shopping.find(params).sort()
-        },
-        Grocery: async (parent, { GroceryId }) => {
-            const params = GroceryId ? {GroceryId} : {};
-            return Grocery.find(params).sort()
-        },
-        Pet: async (parent, { PetId }) => {
-            const params = PetId ? {PetId} : {};
-            return Pet.find(params).sort()
-        },
-        Dining: async (parent, { DiningId }) => {
-            const params = DiningId ? {DiningId} : {};
-            return Dining.find(params).sort()
-        },
-        Recurringinvestment: async (parent, { RecurringInvestmentId }) => {
-            const params = RecurringInvestmentId ? {RecurringInvestmentId} : {};
-            return RecurringInvestment.find(params).sort()
-        },
+        // Budget: async (parent, { BudgetId }) => {
+        //     const params = BudgetId ? {BudgetId} : {};
+        //     return Budget.find(params).sort()
+        // },
+        // Bills: async (parent, { BillsId }) => {
+        //     const params = BillsId ? {BillsId} : {};
+        //     return Bills.find(params).sort()
+        // },
+        // Shopping: async (parent, { ShoppingId }) => {
+        //     const params = ShoppingId ? {ShoppingId} : {};
+        //     return Shopping.find(params).sort()
+        // },
+        // Grocery: async (parent, { GroceryId }) => {
+        //     const params = GroceryId ? {GroceryId} : {};
+        //     return Grocery.find(params).sort()
+        // },
+        // Pet: async (parent, { PetId }) => {
+        //     const params = PetId ? {PetId} : {};
+        //     return Pet.find(params).sort()
+        // },
+        // Dining: async (parent, { DiningId }) => {
+        //     const params = DiningId ? {DiningId} : {};
+        //     return Dining.find(params).sort()
+        // },
+        // Recurringinvestment: async (parent, { RecurringInvestmentId }) => {
+        //     const params = RecurringInvestmentId ? {RecurringInvestmentId} : {};
+        //     return RecurringInvestment.find(params).sort()
+        // },
 
 
     },
@@ -175,28 +175,28 @@ const resolvers = {
 
             throw new AuthenticationError('you need to be logged in');
         }, 
-        addAuth: async (parent, { AuthToken, Auth }, context) => {
-            if (context.Auth) {
-                return Auth.findOneAndUpdate(
-                    {token: AuthToken},
-                    {
-                        $addToSet: { Auth: Auth},
-                    },
-                    {
-                        new: true,
-                        runValidators: true,
-                    }
-                );
-            }
+        // addAuth: async (parent, { AuthToken, Auth }, context) => {
+        //     if (context.Auth) {
+        //         return Auth.findOneAndUpdate(
+        //             {token: AuthToken},
+        //             {
+        //                 $addToSet: { Auth: Auth},
+        //             },
+        //             {
+        //                 new: true,
+        //                 runValidators: true,
+        //             }
+        //         );
+        //     }
 
-            throw new AuthenticationError('you need to be logged in');
-        },
-        removeUser: async (parent, args, context) => {
-            if (context.User) {
-                return User.findOneandDelete({_id: context.user._id });
-            }
-            throw new AuthenticationError('You need to be logged in.');
-        },
+        //     throw new AuthenticationError('you need to be logged in');
+        // },
+        // removeUser: async (parent, args, context) => {
+        //     if (context.User) {
+        //         return User.findOneandDelete({_id: context.user._id });
+        //     }
+        //     throw new AuthenticationError('You need to be logged in.');
+        // },
         removeBudget: async (parent, { Budget }, context) => {
             if (context.Budget) {
                 return Budget.findOneAndUpdate(
@@ -267,16 +267,16 @@ const resolvers = {
             }
             throw new AuthenticationError ('you need to be logged in');
         },
-        removeAuth: async (parent, { Auth }, context) => {
-            if (context.Auth) {
-                return Auth.findOneAndUpdate(
-                    {token: context.Auth.token},
-                    { $pull: { Auth: Auth}},
-                    {new: true}
-                );
-            }
-            throw new AuthenticationError ('you need to be logged in');
-        },
+        // removeAuth: async (parent, { Auth }, context) => {
+        //     if (context.Auth) {
+        //         return Auth.findOneAndUpdate(
+        //             {token: context.Auth.token},
+        //             { $pull: { Auth: Auth}},
+        //             {new: true}
+        //         );
+        //     }
+        //     throw new AuthenticationError ('you need to be logged in');
+        // },
 
 
     },

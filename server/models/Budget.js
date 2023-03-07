@@ -67,6 +67,6 @@ const budgetSchema = new Schema({
     }]
 });
 
-const Budget = model('Budget', budgetSchema);
+// const Budget = model('Budget', budgetSchema);
 
-module.exports = Budget;
+module.exports = budgetSchema;
