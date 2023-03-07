@@ -1,18 +1,41 @@
-//import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Form, Input } from 'antd';
-//import { useMutation } from '@apollo/client';
-//import { LOGIN_USER } from '../utils/mutations';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../utils/mutations';
 
-//import Auth from '../utils/auth';
+import Auth from '../utils/auth';
 
 export default function Login() {
-  // const [formState, setFormState] = useState({ email: '', password: ''});
-  // const[login, { error, data }] = useMutation(LOGIN_USER);
+   const [formState, setFormState] = useState({ email: '', password: ''});
+   const[login, { error, data }] = useMutation(LOGIN_USER);
 
-  //   const handleLogin = () => {
-  //     // add functionality here 
+     const handleLogin = (event) => {
+       const { name, value } = event.target;
 
-    //};
+       setFormState({
+        ...formState,
+        [name]: value,
+       });
+    };
+
+    const handleFormSubmit = async (event) => {
+      event.preventDefault();
+      console.log(formState);
+      try {
+        const { data } = await login({
+          variables: { ...formState },
+        });
+
+        Auth.login(data.login.token);
+      } catch (e) {
+        console.error(e);
+      }
+
+      setFormState({
+        email: '',
+        password: '',
+      });
+    };
 
     return (
         <>
@@ -34,6 +57,8 @@ export default function Login() {
             <Form.Item
                 label='Email'
                 name='email'
+                value={formState.email}
+                onChange={handleLogin}
                 rules={[
                     {required: true, message: 'Please input your email!'}
                 ]}
@@ -43,6 +68,8 @@ export default function Login() {
             <Form.Item
                 label="Password"
                 name="password"
+                value={formState.password}
+                onChange={handleLogin}
                 rules={[
                   {required: true, message: 'Please input your password!'}
                 ]}
@@ -55,7 +82,7 @@ export default function Login() {
                     span: 16,
                 }}
             >
-                <Button style={{background: '#13c2c2'}} htmlType="submit">
+                <Button onSubmit={handleFormSubmit} style={{background: '#13c2c2'}} htmlType="submit">
                     Submit
                 </Button>
                 </Form.Item>
