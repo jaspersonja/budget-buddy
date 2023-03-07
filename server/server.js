@@ -32,11 +32,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
-//do we need this below?
-// db.once('open', () => {
-//   app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));
-// });
-
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
