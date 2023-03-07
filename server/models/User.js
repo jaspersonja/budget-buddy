@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
-const budgetSchema = require('./Budget')
+const Budget = require('./Budget');
+const budgetSchema = require('./Budget');
 
 const userSchema = new Schema({
   username: {
@@ -19,7 +20,9 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  budget: [budgetSchema],
+  budget: budgetSchema
+  
+  
 });
 
 const User = model('User', userSchema);
