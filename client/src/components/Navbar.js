@@ -1,5 +1,6 @@
 import React from 'react';
 import {Menu, Modal} from 'antd';
+import { useNavigate } from "react-router-dom";
 import {HomeOutlined, MehOutlined, LoginOutlined, BookOutlined} from '@ant-design/icons'
 import {useState} from 'react'
 import Login from './Login'
@@ -30,6 +31,8 @@ const navItems = [
   }
 ]
 
+const navigate = useNavigate();
+
 const [current, setCurrent] = useState('home');
 const [open, setOpen] = useState(false);
 
@@ -43,8 +46,18 @@ const closeModal = () => {
 
 const onClick = (e) => {
   setCurrent(e.key)
-  if (e.key === 'login' || e.key === 'register') {
-    showModal()
+  switch(e.key) {
+    case 'login':
+      showModal(true);
+      break;
+    case 'register':
+      showModal(true);
+      break;
+    case 'home':
+      navigate('/')
+      break;
+    case 'profile':
+      navigate('/profile');
   }
 };
 
