@@ -95,3 +95,14 @@ export const QUERY_AUTH = gql`
         }
     }
 `;
+
+export const QUERY_ME = gql`
+    query me {
+        me{
+            _id
+            username
+            email
+            password
+        }
+    }
+`;

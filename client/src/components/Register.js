@@ -1,12 +1,50 @@
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../utils/mutations';
 import { Button, Form, Input } from 'antd';
 
-export default function Register() {
-    const handleRegister = () => {
+import Auth from '../utils/auth';
 
-    };
+const Register = () => {
+  const [register, setRegister] = useState({ 
+    username: '',
+    email: '',
+    password:''
+  });
+  const [addUser, { error, data }] = useMutation (ADD_USER);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    
+    setRegister({
+      ...register,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log(register);
+
+    try {
+      const { data } = await addUser ({
+        variables: { ...register },
+      });
+      Auth.login(data.addUser.token);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
     return (
         <>
+        {data ? (
+          <p>
+            Success! You may now head{' '}
+            <Link to="/">back to the homepage.</Link>
+          </p>
+        ) : (
         <Form
             name='register'
             labelCol={{
@@ -26,6 +64,8 @@ export default function Register() {
             <Form.Item
                 label='Email'
                 name='email'
+                value={register.email}
+                onChange={handleChange}
                 rules={[
                     {required: true, message: 'Please input your email!'}
                 ]}
@@ -36,6 +76,8 @@ export default function Register() {
             <Form.Item
                 label='Username'
                 name='username'
+                value={register.username}
+                onChange={handleChange}
                 rules={[
                     {required: true, message: 'Please input your username!'}
                 ]}
@@ -45,6 +87,8 @@ export default function Register() {
             <Form.Item
                 label="Password"
                 name="password"
+                value={register.password}
+                onChange={handleChange}
                 rules={[
                   {required: true, message: 'Please input your password!'}
                 ]}
@@ -57,11 +101,20 @@ export default function Register() {
                     span: 16,
                 }}
             >
-                <Button style={{background: '#13c2c2'}} htmlType="submit">
+                <Button onClick={handleSubmit} style={{background: '#13c2c2'}} htmlType="submit">
                     Submit
                 </Button>
                 </Form.Item>
         </Form>
+        )}
+
+        {error && (
+          <div>
+            {error.message}
+          </div>
+        )}
         </>
-    )
-}
+    );
+};
+
+export default Register;
