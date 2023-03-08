@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 //TODO: set up the proper path mongodb://localhost/<db-name-here>
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/budgetdb', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/budgetdb', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
