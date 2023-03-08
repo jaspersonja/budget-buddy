@@ -28,6 +28,7 @@ const Register = () => {
     console.log(register);
 
     try {
+
       const { data } = await addUser ({
         variables: { ...register },
       });
