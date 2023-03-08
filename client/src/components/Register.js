@@ -63,37 +63,35 @@ const Register = () => {
             
             <Form.Item
                 label='Email'
-                name='email'
-                value={register.email}
-                onChange={handleChange}
+                
                 rules={[
                     {required: true, message: 'Please input your email!'}
                 ]}
             >
-                <Input/>
+                <Input name='email'
+                value={register.email}
+                onChange={handleChange}/>
             </Form.Item>
 
             <Form.Item
                 label='Username'
-                name='username'
-                value={register.username}
-                onChange={handleChange}
                 rules={[
                     {required: true, message: 'Please input your username!'}
                 ]}
             >
-                <Input/>
+                <Input name='username'
+                value={register.username}
+                onChange={handleChange}/>
             </Form.Item>
             <Form.Item
                 label="Password"
-                name="password"
-                value={register.password}
                 onChange={handleChange}
                 rules={[
                   {required: true, message: 'Please input your password!'}
                 ]}
             >
-                <Input.Password />
+                <Input.Password name="password"
+                value={register.password} onChange={handleChange}/>
             </Form.Item>
             <Form.Item
                 wrapperCol={{
@@ -107,7 +105,6 @@ const Register = () => {
                 </Form.Item>
         </Form>
         )}
-
         {error && (
           <div>
             {error.message}
