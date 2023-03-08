@@ -30,7 +30,7 @@ const Register = () => {
     try {
 
       const { data } = await addUser ({
-        variables: {username: 'gibbbeeeeee', email: 'josephbsimmerman@gmail.com', password: 'test1234'},
+        variables: { ...register },
       });
       Auth.login(data.addUser.token);
     } catch (e) {
