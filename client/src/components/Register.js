@@ -28,8 +28,9 @@ const Register = () => {
     console.log(register);
 
     try {
+
       const { data } = await addUser ({
-        variables: { ...register },
+        variables: {username: 'gibbbeeeeee', email: 'josephbsimmerman@gmail.com', password: 'test1234'},
       });
       Auth.login(data.addUser.token);
     } catch (e) {

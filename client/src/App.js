@@ -18,7 +18,7 @@ import SiteFooter from './components/SiteFooter';
 
 // main graphQL API endpoint
 const httpLink = createHttpLink({
-  uri: '/graphQL',
+  uri: '/graphql',
 });
 
 //construct request middleware for JWT token for every request as an auth header or login??
