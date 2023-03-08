@@ -11,7 +11,9 @@ export default function LoggedInHome() {
     {title: bills.name, value: 2300, color: bills.color},
     {title: shopping.name, value: 200, color: shopping.color},
     {title: grocery.name, value: 500, color: grocery.color},
-    {title: pet.name, value: 300, color: pet.color}
+    {title: pet.name, value: 300, color: pet.color},
+    {title: investiment.name, value: 3000, color: investiment.color},
+    {title: dining.name, value: 300, color: dining.color}
   ];
   
   return(

@@ -22,7 +22,7 @@ const userSchema = new Schema({
   },
  
 });
-
+// lines 26-39 are new. needed to call the bcrypt and budget
 userSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('password')) {
     const saltRounds = 10;
