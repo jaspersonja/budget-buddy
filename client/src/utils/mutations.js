@@ -1,52 +1,15 @@
 import { gql } from '@apollo/client';
 
 export const ADD_USER = gql`
-    mutation addUser($username: String!, $email: String!, $password: String!) {
-        addUser(username: $username email: $email, password: $password){
-            token
-            user {
-                _id
-                username
-                email
-                password
-                budget {
-                    income
-                    bills{
-                        _id
-                        billName
-                        billAmount
-                    }
-                    shopping{
-                        _id
-                        shoppingItem
-                        shoppingItemCost
-                    }
-                    grocery{
-                        _id
-                        groceryItem
-                        groceryItemCost
-                    }
-                    pets{
-                        _id
-                        petName
-                        petFood
-                        petCost
-                    }
-                    dining{
-                        _id
-                        diningRestaurant
-                        diningCost
-                    }
-                    recurringInvestment{
-                        _id
-                        brokerName
-                        brokerageDeposit
-                    }
-
-                }
-            }
-        }    
+    mutation AddUser($username: String!, $email: String!, $password: String!) {
+  addUser(username: $username, email: $email, password: $password) {
+    token
+    user {
+      _id
+      username
     }
+  }
+}
 `;
 
 export const ADD_BUDGET = gql`
@@ -410,7 +373,6 @@ export const LOGIN_USER = gql`
                         brokerName
                         brokerageDeposit
                     }
-
                 }
             }
         } 
