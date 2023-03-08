@@ -1,19 +1,26 @@
 import React, {useState} from 'react';
+import {useQuery, useMutation} from '@apollo/client'
 import {Layout, Button, Typography, Col, Row, Card, Calendar, Modal} from 'antd';
 import {bills, grocery, shopping, investment, pet, dining} from '../utils/colors-temp'
+import {QUERY_ME} from '../utils/queries'
 import AddExpense from '../components/AddExpense';
+import Loading from '../components/Loading';
 
 
 const {Text, Title} = Typography;
 const {Content} = Layout;
 
 export default function Profile() {
+    const [userData, setUserData] = useState({})
+    const {loading, data} = useQuery(QUERY_ME)
     const [currentExpense, setCurrentExpense] = useState({0: {
         label: bills.name,
         key: 'bills',
         color: bills.color
     },});
     const [open, setOpen] = useState(false);
+
+
 
     const showModal = () => {
     setOpen(true);
@@ -64,7 +71,12 @@ export default function Profile() {
         setCurrentExpense(expenseCategory.filter(category => category.label === e.target.innerText))
         showModal(true);
     }
-    
+
+    if (loading) {
+        return (<Loading/>)
+    } else {
+        console.log(data)
+    }
     return (
         <>
         <Content style={{

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations';
+import { ADD_BUDGET, ADD_USER } from '../utils/mutations';
 import { Button, Form, Input } from 'antd';
 
 import Auth from '../utils/auth';
@@ -13,6 +13,7 @@ const Register = () => {
     password:''
   });
   const [addUser, { error, data }] = useMutation (ADD_USER);
+  const [addBudget] = useMutation(ADD_BUDGET)
 
   const handleChange = (event) => {
     const { name, value } = event.target;

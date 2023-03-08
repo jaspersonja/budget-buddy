@@ -1,11 +1,11 @@
-import {Spin, Layout, Row} from 'antd'
+import {Spin, Layout, Row, Col} from 'antd'
 const {Content} = Layout;
 
 export default function Loading() {
 
     return (
-        <Content justify="center">
-            <Row><Spin size='large'/></Row>
+        <Content style={{height: '100vh', background: '#e6fffb'}} justify="center">
+            <Row><Col span={24}><Spin size='large'/></Col></Row>
         </Content>
     )
 }

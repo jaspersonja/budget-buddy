@@ -16,6 +16,7 @@ export default function Login() {
         ...formState,
         [name]: value,
        });
+       console.log(formState)
     };
 
     const handleFormSubmit = async (event) => {
@@ -56,25 +57,25 @@ export default function Login() {
         >
             <Form.Item
                 label='Email'
-                name='email'
-                value={formState.email}
-                onChange={handleLogin}
                 rules={[
                     {required: true, message: 'Please input your email!'}
                 ]}
             >
-                <Input/>
+                <Input 
+                name='email'
+                value={formState.email}
+                onChange={handleLogin}/>
             </Form.Item>
             <Form.Item
                 label="Password"
-                name="password"
-                value={formState.password}
-                onChange={handleLogin}
                 rules={[
                   {required: true, message: 'Please input your password!'}
                 ]}
             >
-                <Input.Password />
+                <Input.Password 
+                name="password"
+                value={formState.password}
+                onChange={handleLogin}/>
             </Form.Item>
             <Form.Item
                 wrapperCol={{
@@ -82,9 +83,14 @@ export default function Login() {
                     span: 16,
                 }}
             >
-                <Button onSubmit={handleFormSubmit} style={{background: '#13c2c2'}} htmlType="submit">
+                <Button onClick={handleFormSubmit} style={{background: '#13c2c2'}} htmlType="submit">
                     Submit
                 </Button>
+                {error && (
+          <div>
+            {error.message}
+          </div>
+        )}
                 </Form.Item>
         </Form>
         </>

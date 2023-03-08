@@ -20,7 +20,7 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
- 
+  budget: [budgetSchema]
 });
 
 userSchema.pre('save', async function (next) {
