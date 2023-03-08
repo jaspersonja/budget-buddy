@@ -36,8 +36,6 @@ userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-const Budget = budgetSchema('User', Budget);
-
 
 const User = model('User', userSchema);
 
