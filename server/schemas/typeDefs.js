@@ -69,20 +69,20 @@ const typeDefs = gql`
     type Mutation {
         addUser(username: String!, email: String!, password: String! ): Auth
         login(email: String!, password: String!): Auth
-        addBudget(budgetId: ID!, Budget: String!): User
-        addBills(billsId: ID!, Bills: String!): User
-        addShopping(ShoppingId: ID!, Shopping: String!): User
-        addGrocery(GroceryId: ID!, Grocery: String!): User
-        addPet(PetId: ID!, Pet: String!): User
-        addDining(DiningId: ID!, Dining: String!): User
-        addRecurringInvestment(RecurringInvestmentId: ID!, RecurringInvestment: String!): User
-        removeBudget(budgetId: ID!, Budget: String!): User
-        removeBills(billsId: ID!, Bills: String!): User
-        removeShopping(ShoppingId: ID!, Shopping: String!): User
-        removeGrocery(GroceryId: ID!, Grocery: String!): User
-        removePet(PetId: ID!, Pet: String!): User
-        removeDining(DiningId: ID!, Dining: String!): User
-        removeRecurringInvestment(RecurringInvestmentId: ID!, RecurringInvestment: String!): User
+        addBudget(budgetId: ID!, budget: String!): User
+        addBills(billsId: ID!, bills: String!): User
+        addShopping(shoppingId: ID!, shopping: String!): User
+        addGrocery(groceryId: ID!, grocery: String!): User
+        addPet(petId: ID!, pet: String!): User
+        addDining(diningId: ID!, dining: String!): User
+        addRecurringInvestment(recurringInvestmentId: ID!, recurringInvestment: String!): User
+        removeBudget(budgetId: ID!, budget: String!): User
+        removeBills(billsId: ID!, bills: String!): User
+        removeShopping(shoppingId: ID!, shopping: String!): User
+        removeGrocery(groceryId: ID!, grocery: String!): User
+        removePet(petId: ID!, pet: String!): User
+        removeDining(diningId: ID!, dining: String!): User
+        removeRecurringInvestment(recurringInvestmentId: ID!, recurringInvestment: String!): User
 
     }
 `;

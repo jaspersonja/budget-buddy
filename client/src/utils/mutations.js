@@ -1,8 +1,149 @@
 import { gql } from '@apollo/client';
 
 export const ADD_USER = gql`
-    mutation addUser($username: String!) {
-        addUser(username: $username){
+    mutation addUser($username: String!, $email: String!, $password: String!) {
+        addUser(username: $username email: $email, password: $password){
+            token
+            user {
+                _id
+                username
+                email
+                password
+                budget {
+                    income
+                    bills{
+                        _id
+                        billName
+                        billAmount
+                    }
+                    shopping{
+                        _id
+                        shoppingItem
+                        shoppingItemCost
+                    }
+                    grocery{
+                        _id
+                        groceryItem
+                        groceryItemCost
+                    }
+                    pets{
+                        _id
+                        petName
+                        petFood
+                        petCost
+                    }
+                    dining{
+                        _id
+                        diningRestaurant
+                        diningCost
+                    }
+                    recurringInvestment{
+                        _id
+                        brokerName
+                        brokerageDeposit
+                    }
+
+                }
+            }
+        }    
+    }
+`;
+
+export const ADD_BUDGET = gql`
+    mutation addBudget($budgetId: ID!, $budget: String!) {
+        addBudget(budgetId: $BudgetId, budget: $Budget){
+                _id
+                username
+                email
+                password
+                budget {
+                    income
+                    bills{
+                        _id
+                        billName
+                        billAmount
+                    }
+                    shopping{
+                        _id
+                        shoppingItem
+                        shoppingItemCost
+                    }
+                    grocery{
+                        _id
+                        groceryItem
+                        groceryItemCost
+                    }
+                    pets{
+                        _id
+                        petName
+                        petFood
+                        petCost
+                    }
+                    dining{
+                        _id
+                        diningRestaurant
+                        diningCost
+                    }
+                    recurringInvestment{
+                        _id
+                        brokerName
+                        brokerageDeposit
+                    }
+
+                }
+            }
+        } 
+`;
+
+export const ADD_BILLS = gql`
+    mutation addBills($billsId: ID!, $bills: String!){
+        addBills(billsId: $billsId, bills: $bills){
+                _id
+                username
+                email
+                password
+                budget {
+                    income
+                    bills{
+                        _id
+                        billName
+                        billAmount
+                    }
+                    shopping{
+                        _id
+                        shoppingItem
+                        shoppingItemCost
+                    }
+                    grocery{
+                        _id
+                        groceryItem
+                        groceryItemCost
+                    }
+                    pets{
+                        _id
+                        petName
+                        petFood
+                        petCost
+                    }
+                    dining{
+                        _id
+                        diningRestaurant
+                        diningCost
+                    }
+                    RecurringInvestment{
+                        _id
+                        brokerName
+                        brokerageDeposit
+                    }
+
+                }
+            }
+        } 
+`;
+
+export const ADD_SHOPPING = gql`
+    mutation addShopping($shoppingId: ID!, $shopping: String!){
+        addShopping(shoppingId: $shoppingId, shopping: $shopping){
             _id
             username
             email
@@ -35,7 +176,142 @@ export const ADD_USER = gql`
                     diningRestaurant
                     diningCost
                 }
-                RecurringInvestment{
+                recurringInvestment{
+                    _id
+                    brokerName
+                    brokerageDeposit
+                }
+            }
+        }
+    } 
+`;
+
+export const ADD_GROCERY = gql`
+    mutation addGrocery($groceryId: ID!, $grocery: String!){
+        addGrocery(groceryId: $groceryId, grocery: $grocery){
+            _id
+            username
+            email
+            password
+            budget {
+                income
+                bills{
+                    _id
+                    billName
+                    billAmount
+                }
+                shopping{
+                    _id
+                    shoppingItem
+                    shoppingItemCost
+                }
+                grocery{
+                    _id
+                    groceryItem
+                    groceryItemCost
+                }
+                pets{
+                    _id
+                    petName
+                    petFood
+                    petCost
+                }
+                dining{
+                    _id
+                    diningRestaurant
+                    diningCost
+                }
+                recurringInvestment{
+                    _id
+                    brokerName
+                    brokerageDeposit
+                }
+            }
+        }
+    } 
+`;
+
+export const ADD_PET = gql`
+    mutation addPet($petId: ID!, $pet: String!){
+     addPet(petId: $petId, pet: $pet){
+            _id
+            username
+            email
+            password
+            budget {
+                income
+                bills{
+                    _id
+                    billName
+                    billAmount
+                }
+                shopping{
+                    _id
+                    shoppingItem
+                    shoppingItemCost
+                }
+                grocery{
+                    _id
+                    groceryItem
+                    groceryItemCost
+                }
+                pets{
+                    _id
+                    petName
+                    petFood
+                    petCost
+                }
+                dining{
+                    _id
+                    diningRestaurant
+                    diningCost
+                }
+                recurringInvestment{
+                    _id
+                    brokerName
+                    brokerageDeposit
+                }
+            }
+        }
+    } 
+`;
+
+export const ADD_DINING = gql`
+    mutation addDining($diningId: ID!, $dining: String!){
+       addDining(diningId: $diningId, dining: $dining){
+            _id
+            username
+            email
+            password
+            budget {
+                income
+                bills{
+                    _id
+                    billName
+                    billAmount
+                }
+                shopping{
+                    _id
+                    shoppingItem
+                    shoppingItemCost
+                }
+                grocery{
+                    _id
+                    groceryItem
+                    groceryItemCost
+                }
+                pets{
+                    _id
+                    petName
+                    petFood
+                    petCost
+                }
+                dining{
+                    _id
+                    diningRestaurant
+                    diningCost
+                }
+                recurringInvestment{
                     _id
                     brokerName
                     brokerageDeposit
@@ -43,128 +319,100 @@ export const ADD_USER = gql`
 
             }
         }
-    }
-`;
-
-export const ADD_BUDGET = gql`
-    mutation addBudget($BudgetId: ID!, $Budget: String!) {
-        addBudget(BudgetId: $BudgetId, Budget: $Budget){
-            _id
-            income
-            bills{
-                _id
-                billName
-                billAmount
-            }
-            shopping{
-                _id
-                shoppingItem
-                shoppingItemCost
-            }
-            grocery{
-                _id
-                groceryItem
-                groceryItemCost
-            }
-            pets{
-                _id
-                petName
-                petFood
-                petCost
-            }
-            dining{
-                _id
-                diningRestaurant
-                diningCost
-            }
-            RecurringInvestment{
-                _id
-                brokerName
-                brokerageDeposit
-            }
-        }
-    }
-`;
-
-export const ADD_BILLS = gql`
-    mutation addBills($BillsId: ID!, $Bills: String!){
-        addBills(BillsId: $BillsId, Bills: $Bills){
-            _id
-            billName
-            billAmount
-        }
-    }
-`;
-
-export const ADD_SHOPPING = gql`
-    mutation addShopping($ShoppingId: ID!, $Shopping: String!){
-        addShopping(ShoppingId: $ShoppingId, Shopping: $Shopping){
-            _id
-            shoppingItem
-            shoppingItemCost
-        }
-    }
-`;
-
-export const ADD_GROCERY = gql`
-    mutation addGrocery($GroceryId: ID!, $Grocery: String!){
-        addGrocery(GroceryId: $GroceryId, Grocery: $Grocery){
-            _id
-            groceryItem
-            groceryItemCost
-        }
-    }
-`;
-
-export const ADD_PETS = gql`
-    mutation addPets($PetId: ID!, $Pet: String!){
-     addPet(PetId: $PetId, Pet: $Pet)
-            _id
-            petName
-            petFood
-            petCost
-        }
-    }
-`;
-
-export const ADD_DINING = gql`
-    mutation addDining($DiningId: ID!, $Dining: String!){
-       addDining(DiningId: $DiningId, Dining: $Dining){
-            _id
-            diningRestaurant
-            diningCost
-        }
-    }
+    } 
 `;
 
 export const ADD_RECURRINGINVESTMENTS = gql`
-    mutation addRecurringInvestment($RecurringInvestmentId: ID!, $RecurringInvestment: String!){
-         addRecurringInvestment(RecurringInvestmentId: $RecurringInvestmentId, RecurringInvestment: $RecurringInvestment{{
-            _id
-            brokerName
-            brokerageDeposit
-        }
-    }
-`;
+    mutation addRecurringInvestment($recurringInvestmentId: ID!, $recurringInvestment: String!){
+         addRecurringInvestment(recurringInvestmentId: $recurringInvestmentId, recurringInvestment: $recurringInvestment){
+                _id
+                username
+                email
+                password
+                budget {
+                    income
+                    bills{
+                        _id
+                        billName
+                        billAmount
+                    }
+                    shopping{
+                        _id
+                        shoppingItem
+                        shoppingItemCost
+                    }
+                    grocery{
+                        _id
+                        groceryItem
+                        groceryItemCost
+                    }
+                    pets{
+                        _id
+                        petName
+                        petFood
+                        petCost
+                    }
+                    dining{
+                        _id
+                        diningRestaurant
+                        diningCost
+                    }
+                    recurringInvestment{
+                        _id
+                        brokerName
+                        brokerageDeposit
+                    }
 
-export const ADD_AUTH = gql`
-    mutation addAuth($AuthToken: TOKEN!, $Auth: String!){
-        addAuth(AuthToken: $AuthToken, Auth: $Auth)
-            token
-            user
-        }
-    }
+                }
+            }
+        } 
 `;
 
 export const LOGIN_USER = gql`
     mutation login($email: String!, $password: String!){
         login(email: $email, password: $password){
             token
-            profile{
+            user {
                 _id
                 username
-            }
-        }
+                email
+                password
+                budget {
+                    income
+                    bills{
+                        _id
+                        billName
+                        billAmount
+                    }
+                    shopping{
+                        _id
+                        shoppingItem
+                        shoppingItemCost
+                    }
+                    grocery{
+                        _id
+                        groceryItem
+                        groceryItemCost
+                    }
+                    pets{
+                        _id
+                        petName
+                        petFood
+                        petCost
+                    }
+                    dining{
+                        _id
+                        diningRestaurant
+                        diningCost
+                    }
+                    recurringInvestment{
+                        _id
+                        brokerName
+                        brokerageDeposit
+                    }
 
+                }
+            }
+        } 
     }
 `;
