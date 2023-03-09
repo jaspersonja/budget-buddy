@@ -118,6 +118,7 @@ const typeDefs = gql`
         addPet(input: PetInput): User
         addDining(input: DiningInput): User
         addRecurringInvestment(input: RecurringInvestmentInput): User
+        updateIncome(income: Int!): User
     }
 `;
 

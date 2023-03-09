@@ -74,7 +74,6 @@ const resolvers = {
                     {$addToSet: { [`budget.bill`]: BillInput.input},},
                     {new: true, runValidators: true,}
                 );
-                console.log(updatedUser)
                 return updatedUser;
             }
 
@@ -147,7 +146,7 @@ const resolvers = {
 
             throw new AuthenticationError('you need to be logged in');
         }, 
-        addRecurringInvestment: async (parent, RecurringInvestmentInput , context) => {
+        addRecurringInvestment: async (parent, RecurringInvestmentInput, context) => {
             if (context.user) {
                 return User.findOneAndUpdate(
                     {_id: context.user._id},
@@ -163,6 +162,15 @@ const resolvers = {
 
             throw new AuthenticationError('you need to be logged in');
         }, 
+        updateIncome: async (parent, income, context) => {
+            if (context.user) {
+                return User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {[`budget.income`]: income},
+                    {}
+                )
+            }
+        }
         // addAuth: async (parent, { AuthToken, Auth }, context) => {
         //     if (context.Auth) {
         //         return Auth.findOneAndUpdate(

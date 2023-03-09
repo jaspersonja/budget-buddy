@@ -1,7 +1,7 @@
 const {Schema} = require('mongoose');
 
 const investSchema = new Schema({
-    brokerageName: {
+    brokerName: {
         type: String,
         required: true
     },

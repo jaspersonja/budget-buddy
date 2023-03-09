@@ -5,6 +5,7 @@ const budgetSchema = new Schema({
     income: {
         type: Number,
         required: true,
+        default: 0
     }, 
     bill: [{
         billName: {
@@ -77,7 +78,7 @@ const budgetSchema = new Schema({
         }
     }],
     recurringInvestment: [{
-        brokerageName: {
+        brokerName: {
             type: String,
             required: true
         },

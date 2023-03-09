@@ -18,7 +18,6 @@ export const ADD_BILL = gql`
             _id
             username
             email
-            password
             budget {
                 income
                 bill{
@@ -68,7 +67,6 @@ export const ADD_SHOPPING = gql`
             _id
                 username
                 email
-                password
                 budget {
                     income
                     bill{
@@ -119,7 +117,6 @@ export const ADD_GROCERY = gql`
             _id
             username
             email
-            password
             budget {
                 income
                 bill{
@@ -169,7 +166,6 @@ export const ADD_PET = gql`
         _id
                 username
                 email
-                password
                 budget {
                     income
                     bill{
@@ -220,7 +216,6 @@ export const ADD_DINING = gql`
             _id
             username
             email
-            password
             budget {
                 income
                 bill{
@@ -271,7 +266,6 @@ export const ADD_RECURRINGINVESTMENTS = gql`
             _id
                 username
                 email
-                password
                 budget {
                     income
                     bill{
@@ -327,4 +321,54 @@ export const LOGIN_USER = gql`
             }
         } 
     }
+`;
+
+export const UPDATE_INCOME = gql`
+    mutation updateIncome($income: Int!){
+        updateIncome(income: $income){
+            _id
+                username
+                email
+                budget {
+                    income
+                    bill{
+                        _id
+                        billName
+                        billAmount
+                        billDate
+                    }
+                    shopping{
+                        _id
+                        shoppingPlace
+                        shoppingCost
+                        shoppingDate
+                    }
+                    grocery{
+                        _id
+                        groceryPlace
+                        groceryCost
+                        groceryDate
+                    }
+                    pet{
+                        _id
+                        petItem
+                        petItemCost
+                        petDate
+                    }
+                    dining{
+                        _id
+                        diningRestaurant
+                        diningBill
+                        diningDate
+                    }
+                    recurringInvestment{
+                        _id
+                        brokerName
+                        brokerageDeposit
+                        brokerageDate
+                    }
+
+                }
+            }
+        } 
 `;
