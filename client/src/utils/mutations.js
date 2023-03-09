@@ -2,55 +2,108 @@ import { gql } from '@apollo/client';
 
 export const ADD_USER = gql`
     mutation AddUser($username: String!, $email: String!, $password: String!) {
-  addUser(username: $username, email: $email, password: $password) {
-    token
-    user {
-      _id
-      username
+        addUser(username: $username, email: $email, password: $password) {
+            token
+            user {
+            _id
+            username
+            }
+        }
     }
-  }
-}
 `;
 
-export const ADD_BUDGET = gql`
-    mutation addBudget($budgetId: ID!, $budget: String!) {
-        addBudget(budgetId: $BudgetId, budget: $Budget){
-                _id
+export const ADD_BILL = gql`
+    mutation addBill($input: BillInput){
+        addBill(input: $input){
+            _id
+            username
+            email
+            budget {
+                income
+                bill{
+                    _id
+                    billName
+                    billAmount
+                    billDate
+                }
+                shopping{
+                    _id
+                    shoppingPlace
+                    shoppingCost
+                    shoppingDate
+                }
+                grocery{
+                    _id
+                    groceryPlace
+                    groceryCost
+                    groceryDate
+                }
+                pet{
+                    _id
+                    petItem
+                    petItemCost
+                    petDate
+                }
+                dining{
+                    _id
+                    diningRestaurant
+                    diningBill
+                    diningDate
+                }
+                recurringInvestment{
+                    _id
+                    brokerName
+                    brokerageDeposit
+                    brokerageDate
+                }
+            }
+        }
+    } 
+`;
+
+export const ADD_SHOPPING = gql`
+    mutation addShopping($input: ShoppingInput){
+        addShopping(input: $input){
+            _id
                 username
                 email
-                password
                 budget {
                     income
-                    bills{
+                    bill{
                         _id
                         billName
                         billAmount
+                        billDate
                     }
                     shopping{
                         _id
-                        shoppingItem
-                        shoppingItemCost
+                        shoppingPlace
+                        shoppingCost
+                        shoppingDate
                     }
                     grocery{
                         _id
-                        groceryItem
-                        groceryItemCost
+                        groceryPlace
+                        groceryCost
+                        groceryDate
                     }
-                    pets{
+                    pet{
                         _id
-                        petName
-                        petFood
-                        petCost
+                        petItem
+                        petItemCost
+                        petDate
                     }
                     dining{
                         _id
                         diningRestaurant
-                        diningCost
+                        diningBill
+                        diningDate
                     }
                     recurringInvestment{
                         _id
                         brokerName
                         brokerageDeposit
+                        brokerageDate
                     }
 
                 }
@@ -58,45 +111,98 @@ export const ADD_BUDGET = gql`
         } 
 `;
 
-export const ADD_BILLS = gql`
-    mutation addBills($billsId: ID!, $bills: String!){
-        addBills(billsId: $billsId, bills: $bills){
-                _id
+export const ADD_GROCERY = gql`
+    mutation addGrocery($input: GroceryInput){
+        addGrocery(input: $input){
+            _id
+            username
+            email
+            budget {
+                income
+                bill{
+                    _id
+                    billName
+                    billAmount
+                    billDate
+                }
+                shopping{
+                    _id
+                    shoppingPlace
+                    shoppingCost
+                    shoppingDate
+                }
+                grocery{
+                    _id
+                    groceryPlace
+                    groceryCost
+                    groceryDate
+                }
+                pet{
+                    _id
+                    petItem
+                    petItemCost
+                    petDate
+                }
+                dining{
+                    _id
+                    diningRestaurant
+                    diningBill
+                    diningDate
+                }
+                recurringInvestment{
+                    _id
+                    brokerName
+                    brokerageDeposit
+                    brokerageDate
+                }
+            }
+        }
+    }
+`;
+
+export const ADD_PET = gql`
+    mutation addPet($input: PetInput){
+     addPet(input: $input){
+        _id
                 username
                 email
-                password
                 budget {
                     income
-                    bills{
+                    bill{
                         _id
                         billName
                         billAmount
+                        billDate
                     }
                     shopping{
                         _id
-                        shoppingItem
-                        shoppingItemCost
+                        shoppingPlace
+                        shoppingCost
+                        shoppingDate
                     }
                     grocery{
                         _id
-                        groceryItem
-                        groceryItemCost
+                        groceryPlace
+                        groceryCost
+                        groceryDate
                     }
-                    pets{
+                    pet{
                         _id
-                        petName
-                        petFood
-                        petCost
+                        petItem
+                        petItemCost
+                        petDate
                     }
                     dining{
                         _id
                         diningRestaurant
-                        diningCost
+                        diningBill
+                        diningDate
                     }
-                    RecurringInvestment{
+                    recurringInvestment{
                         _id
                         brokerName
                         brokerageDeposit
+                        brokerageDate
                     }
 
                 }
@@ -104,180 +210,49 @@ export const ADD_BILLS = gql`
         } 
 `;
 
-export const ADD_SHOPPING = gql`
-    mutation addShopping($shoppingId: ID!, $shopping: String!){
-        addShopping(shoppingId: $shoppingId, shopping: $shopping){
-            _id
-            username
-            email
-            password
-            budget {
-                income
-                bills{
-                    _id
-                    billName
-                    billAmount
-                }
-                shopping{
-                    _id
-                    shoppingItem
-                    shoppingItemCost
-                }
-                grocery{
-                    _id
-                    groceryItem
-                    groceryItemCost
-                }
-                pets{
-                    _id
-                    petName
-                    petFood
-                    petCost
-                }
-                dining{
-                    _id
-                    diningRestaurant
-                    diningCost
-                }
-                recurringInvestment{
-                    _id
-                    brokerName
-                    brokerageDeposit
-                }
-            }
-        }
-    } 
-`;
-
-export const ADD_GROCERY = gql`
-    mutation addGrocery($groceryId: ID!, $grocery: String!){
-        addGrocery(groceryId: $groceryId, grocery: $grocery){
-            _id
-            username
-            email
-            password
-            budget {
-                income
-                bills{
-                    _id
-                    billName
-                    billAmount
-                }
-                shopping{
-                    _id
-                    shoppingItem
-                    shoppingItemCost
-                }
-                grocery{
-                    _id
-                    groceryItem
-                    groceryItemCost
-                }
-                pets{
-                    _id
-                    petName
-                    petFood
-                    petCost
-                }
-                dining{
-                    _id
-                    diningRestaurant
-                    diningCost
-                }
-                recurringInvestment{
-                    _id
-                    brokerName
-                    brokerageDeposit
-                }
-            }
-        }
-    } 
-`;
-
-export const ADD_PET = gql`
-    mutation addPet($petId: ID!, $pet: String!){
-     addPet(petId: $petId, pet: $pet){
-            _id
-            username
-            email
-            password
-            budget {
-                income
-                bills{
-                    _id
-                    billName
-                    billAmount
-                }
-                shopping{
-                    _id
-                    shoppingItem
-                    shoppingItemCost
-                }
-                grocery{
-                    _id
-                    groceryItem
-                    groceryItemCost
-                }
-                pets{
-                    _id
-                    petName
-                    petFood
-                    petCost
-                }
-                dining{
-                    _id
-                    diningRestaurant
-                    diningCost
-                }
-                recurringInvestment{
-                    _id
-                    brokerName
-                    brokerageDeposit
-                }
-            }
-        }
-    } 
-`;
-
 export const ADD_DINING = gql`
-    mutation addDining($diningId: ID!, $dining: String!){
-       addDining(diningId: $diningId, dining: $dining){
+    mutation addDining($input: DiningInput){
+       addDining(input: $input){
             _id
             username
             email
-            password
             budget {
                 income
-                bills{
+                bill{
                     _id
                     billName
                     billAmount
+                    billDate
                 }
                 shopping{
                     _id
-                    shoppingItem
-                    shoppingItemCost
+                    shoppingPlace
+                    shoppingCost
+                    shoppingDate
                 }
                 grocery{
                     _id
-                    groceryItem
-                    groceryItemCost
+                    groceryPlace
+                    groceryCost
+                    groceryDate
                 }
-                pets{
+                pet{
                     _id
-                    petName
-                    petFood
-                    petCost
+                    petItem
+                    petItemCost
+                    petDate
                 }
                 dining{
                     _id
                     diningRestaurant
-                    diningCost
+                    diningBill
+                    diningDate
                 }
                 recurringInvestment{
                     _id
                     brokerName
                     brokerageDeposit
+                    brokerageDate
                 }
 
             }
@@ -286,44 +261,48 @@ export const ADD_DINING = gql`
 `;
 
 export const ADD_RECURRINGINVESTMENTS = gql`
-    mutation addRecurringInvestment($recurringInvestmentId: ID!, $recurringInvestment: String!){
-         addRecurringInvestment(recurringInvestmentId: $recurringInvestmentId, recurringInvestment: $recurringInvestment){
-                _id
+    mutation addRecurringInvestment($input: RecurringInvestmentInput){
+         addRecurringInvestment(input: $input){
+            _id
                 username
                 email
-                password
                 budget {
                     income
-                    bills{
+                    bill{
                         _id
                         billName
                         billAmount
+                        billDate
                     }
                     shopping{
                         _id
-                        shoppingItem
-                        shoppingItemCost
+                        shoppingPlace
+                        shoppingCost
+                        shoppingDate
                     }
                     grocery{
                         _id
-                        groceryItem
-                        groceryItemCost
+                        groceryPlace
+                        groceryCost
+                        groceryDate
                     }
-                    pets{
+                    pet{
                         _id
-                        petName
-                        petFood
-                        petCost
+                        petItem
+                        petItemCost
+                        petDate
                     }
                     dining{
                         _id
                         diningRestaurant
-                        diningCost
+                        diningBill
+                        diningDate
                     }
                     recurringInvestment{
                         _id
                         brokerName
                         brokerageDeposit
+                        brokerageDate
                     }
 
                 }
@@ -339,42 +318,57 @@ export const LOGIN_USER = gql`
                 _id
                 username
                 email
-                password
+            }
+        } 
+    }
+`;
+
+export const UPDATE_INCOME = gql`
+    mutation updateIncome($income: Int!){
+        updateIncome(income: $income){
+            _id
+                username
+                email
                 budget {
                     income
-                    bills{
+                    bill{
                         _id
                         billName
                         billAmount
+                        billDate
                     }
                     shopping{
                         _id
-                        shoppingItem
-                        shoppingItemCost
+                        shoppingPlace
+                        shoppingCost
+                        shoppingDate
                     }
                     grocery{
                         _id
-                        groceryItem
-                        groceryItemCost
+                        groceryPlace
+                        groceryCost
+                        groceryDate
                     }
-                    pets{
+                    pet{
                         _id
-                        petName
-                        petFood
-                        petCost
+                        petItem
+                        petItemCost
+                        petDate
                     }
                     dining{
                         _id
                         diningRestaurant
-                        diningCost
+                        diningBill
+                        diningDate
                     }
                     recurringInvestment{
                         _id
                         brokerName
                         brokerageDeposit
+                        brokerageDate
                     }
+
                 }
             }
         } 
-    }
 `;

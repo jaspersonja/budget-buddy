@@ -1,31 +1,41 @@
 const { Schema, model } = require('mongoose');
 
+
 const budgetSchema = new Schema({
     income: {
         type: Number,
         required: true,
+        default: 0
     }, 
-    bills: [{
+    bill: [{
         billName: {
             type: String,
             required: true
         },
         billAmount: {
-            type: Number,
-            required: true
-        },
-    }],
-    shopping: [{
-        shoppingItem: {
             type: String,
             required: true
         },
-        shoppingItemCost: {
-            type: Number,
+        billDate: {
+            type: String,
             required: true
         }
     }],
-    groceries: [{
+    shopping: [{
+        shoppingPlace: {
+            type: String,
+            required: true
+        },
+        shoppingCost: {
+            type: Number,
+            required: true
+        },
+        shoppingDate: {
+            type: String,
+            required: true
+        }
+    }],
+    grocery: [{
         groceryItem: {
             type: String,
             required: true
@@ -33,15 +43,23 @@ const budgetSchema = new Schema({
         groceryItemCost: {
             type: Number,
             required: true
+        },
+        groceryDate: {
+            type: String,
+            required: true
         }
     }],
     pet: [{
-        petName: {
+        petItem: {
             type: String,
             required: true
         },
-        petFood: {
+        petItemCost: {
             type: Number,
+            required: true
+        },
+        petDate: {
+            type: String,
             required: true
         }
     }],
@@ -53,15 +71,23 @@ const budgetSchema = new Schema({
         diningBill: {
             type: Number,
             required: true
+        },
+        diningDate: {
+            type: String,
+            required: true
         }
     }],
     recurringInvestment: [{
-        brokerageName: {
+        brokerName: {
             type: String,
             required: true
         },
         brokerageDeposit: {
             type: Number,
+            required: true
+        },
+        brokerageDate: {
+            type: String,
             required: true
         }
     }]

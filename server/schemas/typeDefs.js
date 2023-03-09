@@ -6,84 +6,119 @@ const typeDefs = gql`
         username: String!
         email: String!
         password: String!
-        budget: [Budget]!  
+        budget: Budget!
     }
 
     type Budget {
         _id: ID!
-        income: Int!
-        bills: [Bills]!
-        shopping: [Shopping]!
-        groceries: [Grocery]!
-        pet: [Pet]!
-        dining: [Dining]!
-        recurringInvestment: [RecurringInvestment]!
+        income: Int
+        bill: [Bill]
+        shopping: [Shopping]
+        grocery: [Grocery]
+        pet: [Pet]
+        dining: [Dining]
+        recurringInvestment: [RecurringInvestment]
     }
 
-    type Bills {
+    type Bill {
         _id: ID!
-        billName: String!
-        billAmount: Int!
+        billName: String
+        billAmount: Int
+        billDate: String
+    }
+
+    input BillInput {
+        billName: String
+        billAmount: Int
+        billDate: String
     }
 
     type Shopping {
         _id: ID!
-        shoppingItem: String!
-        shoppingItemCost: Int!
+        shoppingPlace: String
+        shoppingCost: Int
+        shoppingDate: String
+    }
+
+    input ShoppingInput {
+        shoppingPlace: String
+        shoppingCost: Int
+        shoppingDate: String
     }
 
     type Grocery {
         _id: ID!
-        groceryItem: String!
-        groceryItemCost: Int!
+        groceryPlace: String
+        groceryCost: Int
+        groceryDate: String
+    }
+    
+
+    input GroceryInput {
+        groceryPlace: String
+        groceryCost: Int
+        groceryDate: String
     }
 
     type Pet {
         _id: ID!
-        petName: String!
-        petFood: Int!
+        petItem: String
+        petItemCost: Int
+        petDate: String
+    }
+
+    input PetInput {
+        petItem: String
+        petItemCost: Int
+        petDate: String
     }
 
     type Dining {
         _id: ID!
-        diningRestaurant: String!
-        diningBill: Int!
+        diningRestaurant: String
+        diningBill: Int
+        diningDate: String
+    }
+
+    input DiningInput {
+        diningRestaurant: String
+        diningBill: Int
+        diningDate: String
     }
 
     type RecurringInvestment {
         _id: ID!
-        brokerName: String!
-        brokerageDeposit: Int!
+        brokerName: String
+        brokerageDeposit: Int
+        brokerageDate: String
+    }
+    
+    input RecurringInvestmentInput {
+        brokerName: String
+        brokerageDeposit: Int
+        brokerageDate: String
     }
 
     type Auth {
         token: ID!
-        user: User!
+        user: User
     }
 
     type Query {
-        me: User!
+        me: User
 
     }
 
     type Mutation {
         addUser(username: String!, email: String!, password: String! ): Auth
         login(email: String!, password: String!): Auth
-        addBudget(budgetId: ID!, budget: String!): User
-        addBills(billsId: ID!, bills: String!): User
-        addShopping(shoppingId: ID!, shopping: String!): User
-        addGrocery(groceryId: ID!, grocery: String!): User
-        addPet(petId: ID!, pet: String!): User
-        addDining(diningId: ID!, dining: String!): User
-        addRecurringInvestment(recurringInvestmentId: ID!, recurringInvestment: String!): User
-        removeBudget(budgetId: ID!, budget: String!): User
-        removeBills(billsId: ID!, bills: String!): User
-        removeShopping(shoppingId: ID!, shopping: String!): User
-        removeGrocery(groceryId: ID!, grocery: String!): User
-        removePet(petId: ID!, pet: String!): User
-        removeDining(diningId: ID!, dining: String!): User
-        removeRecurringInvestment(recurringInvestmentId: ID!, recurringInvestment: String!): User
-
+        addBill(input: BillInput): User
+        addShopping(input: ShoppingInput): User
+        addGrocery(input: GroceryInput): User
+        addPet(input: PetInput): User
+        addDining(input: DiningInput): User
+        addRecurringInvestment(input: RecurringInvestmentInput): User
+        updateIncome(income: Int!): User
     }
 `;
 

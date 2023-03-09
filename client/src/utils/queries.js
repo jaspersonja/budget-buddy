@@ -7,41 +7,45 @@ export const QUERY_ME = gql`
             _id
             username
             email
-            password
             budget {
                 income
-                bills{
+                bill{
                     _id
                     billName
                     billAmount
+                    billDate
                 }
                 shopping{
                     _id
-                    shoppingItem
-                    shoppingItemCost
+                    shoppingPlace
+                    shoppingCost
+                    shoppingDate
                 }
                 grocery{
                     _id
-                    groceryItem
-                    groceryItemCost
+                    groceryPlace
+                    groceryCost
+                    groceryDate
                 }
-                pets{
+                pet{
                     _id
-                    petName
-                    petFood
-                    petCost
+                    petItem
+                    petItemCost
+                    petDate
                 }
                 dining{
                     _id
                     diningRestaurant
-                    diningCost
+                    diningBill
+                    diningDate
                 }
                 recurringInvestment{
                     _id
                     brokerName
                     brokerageDeposit
+                    brokerageDate
                 }
             }
         }
-    }
+    } 
 `;

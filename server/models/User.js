@@ -1,7 +1,11 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
-//const Budget = require('./Budget');
-const budgetSchema = require('./Budget');
+const Bill = require('./budget-array/Bill')
+const Grocery = require('./budget-array/Grocery')
+const Shopping = require('./budget-array/Shopping')
+const Pet = require('./budget-array/Pet')
+const Invest = require('./budget-array/Invest')
+const Dining = require('./budget-array/Dining')
 
 const userSchema = new Schema({
   username: {
@@ -20,9 +24,20 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  budget: budgetSchema
+  budget: {
+    income: {
+      type: Number,
+      required: false,
+    }, 
+    bill: [Bill],
+    shopping: [Shopping],
+    grocery: [Grocery],
+    pet: [Pet],
+    dining: [Dining],
+    recurringInvestment: [Invest]
+  }
 });
-// lines 26-39 are new. needed to call the bcrypt and budget
+
 userSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('password')) {
     const saltRounds = 10;

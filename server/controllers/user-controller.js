@@ -24,7 +24,7 @@ module.exports = {
         return res.status(400).json({ message: 'Something is wrong!' });
       }
       const token = signToken(user);
-      res.json({ token, user });
+      return {token, user}
     },
     // login a user, sign a token, and send it back (to client/src/components/Login.js)
     // {body} is destructured req.body
@@ -40,7 +40,7 @@ module.exports = {
         return res.status(400).json({ message: 'Wrong password!' });
       }
       const token = signToken(user);
-      res.json({ token, user });
+      return {token, user}
     },
 //save budget input
     async saveBudget({ user, body }, res) {
@@ -65,8 +65,8 @@ module.exports = {
           //NOT SURE IF WE NEED TO SPECIFY EACH COMPONENT OF BUDGET SCHEMA HERE i.e. income, bills, shopping, etc.
           { $pull: { budget:[ 
             {income: params.income},
-            {bills: params.bills},
-            {shopping: params.bills},
+            {bill: params.bill},
+            {shopping: params.bill},
             {groceries: params.groceries},
             {pet: params.pet},
             {dining: params.dining},

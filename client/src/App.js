@@ -23,11 +23,11 @@ const httpLink = createHttpLink({
 
 //construct request middleware for JWT token for every request as an auth header or login??
 
-const authLink = setContext((_, { login }) => {
+const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
   return {
-    login: {
-      ...login,
+    headers: {
+      ...headers,
       authorization: token ? `Bearer ${token}` : '',
     },
   };

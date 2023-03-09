@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations';
+import { ADD_BUDGET, ADD_USER } from '../utils/mutations';
 import { Button, Form, Input } from 'antd';
 
 import Auth from '../utils/auth';
@@ -32,6 +32,7 @@ const Register = () => {
       const { data } = await addUser ({
         variables: { ...register },
       });
+      
       Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
