@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useQuery, useMutation} from '@apollo/client'
+import {useQuery} from '@apollo/client'
 import {Layout, Button, Typography, Col, Row, Card, Calendar, Modal} from 'antd';
 import {bills, grocery, shopping, investment, pet, dining} from '../utils/colors-temp'
 import {QUERY_ME} from '../utils/queries'
@@ -72,11 +72,17 @@ export default function Profile() {
         showModal(true);
     }
 
-    if (loading) {
+    if (userData === {}) {
+        if (!loading){
+            setUserData(data.me.budget)
+        }
         return (<Loading/>)
-    } else {
+    }
+
+    const click = () => {
         console.log(data)
     }
+
     return (
         <>
         <Content style={{
@@ -115,7 +121,7 @@ export default function Profile() {
                         }}
                         title="Day's expenses"
                     >
-
+                        <Button onClick={click}/>
                     </Card>
                 </Col>
                 <Col flex='85%'>

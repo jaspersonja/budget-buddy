@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 
+
 const budgetSchema = new Schema({
     income: {
         type: Number,
@@ -11,7 +12,7 @@ const budgetSchema = new Schema({
             required: true
         },
         billAmount: {
-            type: Number,
+            type: String,
             required: true
         },
         billDate: {

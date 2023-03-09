@@ -13,7 +13,6 @@ const Register = () => {
     password:''
   });
   const [addUser, { error, data }] = useMutation (ADD_USER);
-  const [addBudget] = useMutation(ADD_BUDGET)
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -33,6 +32,7 @@ const Register = () => {
       const { data } = await addUser ({
         variables: { ...register },
       });
+      
       Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);

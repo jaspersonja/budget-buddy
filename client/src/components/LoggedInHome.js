@@ -19,7 +19,7 @@ export default function LoggedInHome() {
   return(
     <>
       <Row gutter={32}>
-        <Col span={8}><Title level={1} type='secondary'>Your Budget At A Glance!</Title></Col>
+        <Col span={8}><Title level={1} type='secondary'>Your Spending At A Glance!</Title></Col>
       </Row>
       <Row>
         <Col>

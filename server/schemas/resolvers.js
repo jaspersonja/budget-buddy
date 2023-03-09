@@ -65,13 +65,46 @@ const resolvers = {
 
             const token = signToken(user);
             return { token, user };
-        },
-        addBudget: async (parent, { BudgetInput }, context) => {
+        }, 
+        addBill: async (parent,  BillInput , context) => {
+            console.log(BillInput.input)
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {$addToSet: { [`budget.bill`]: BillInput.input},},
+                    {new: true, runValidators: true,}
+                );
+                console.log(updatedUser)
+                return updatedUser;
+            }
+
+            throw new AuthenticationError('you need to be logged in');
+        }, 
+        addShopping: async (parent, ShoppingInput , context) => {
+            console.log('Trigger')
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {
+                        $addToSet: { [`budget.shopping`]: ShoppingInput.input},
+                    },
+                    {
+                        new: true,
+                        runValidators: true,
+                    }
+                );
+                return updatedUser;
+            }
+
+            throw new AuthenticationError('you need to be logged in');
+        }, 
+        addGrocery: async (parent, GroceryInput , context) => {
+            console.log('Trigger')
             if (context.user) {
                 return User.findOneAndUpdate(
                     {_id: context.user._id},
                     {
-                        $addToSet: { Budget: BudgetInput},
+                        $addToSet: { [`budget.grocery`]: GroceryInput.input},
                     },
                     {
                         new: true,
@@ -82,12 +115,12 @@ const resolvers = {
 
             throw new AuthenticationError('you need to be logged in');
         }, 
-        addBill: async (parent, { BillInput }, context) => {
+        addPet: async (parent, PetInput, context) => {
             if (context.user) {
                 return User.findOneAndUpdate(
                     {_id: context.user._id},
                     {
-                        $addToSet: { Bill: BillInput},
+                        $addToSet: { [`budget.pet`]: PetInput.input},
                     },
                     {
                         new: true,
@@ -98,12 +131,12 @@ const resolvers = {
 
             throw new AuthenticationError('you need to be logged in');
         }, 
-        addShopping: async (parent, { ShoppingInput }, context) => {
+        addDining: async (parent, DiningInput , context) => {
             if (context.user) {
                 return User.findOneAndUpdate(
                     {_id: context.user._id},
                     {
-                        $addToSet: { Shopping: ShoppingInput},
+                        $addToSet: { [`budget.dining`]: DiningInput.input},
                     },
                     {
                         new: true,
@@ -114,60 +147,12 @@ const resolvers = {
 
             throw new AuthenticationError('you need to be logged in');
         }, 
-        addGrocery: async (parent, { GroceryInput }, context) => {
+        addRecurringInvestment: async (parent, RecurringInvestmentInput , context) => {
             if (context.user) {
                 return User.findOneAndUpdate(
                     {_id: context.user._id},
                     {
-                        $addToSet: { Grocery: GroceryInput},
-                    },
-                    {
-                        new: true,
-                        runValidators: true,
-                    }
-                );
-            }
-
-            throw new AuthenticationError('you need to be logged in');
-        }, 
-        addPet: async (parent, {PetInput}, context) => {
-            if (context.user) {
-                return User.findOneAndUpdate(
-                    {_id: context.user._id},
-                    {
-                        $addToSet: { Pet: PetInput},
-                    },
-                    {
-                        new: true,
-                        runValidators: true,
-                    }
-                );
-            }
-
-            throw new AuthenticationError('you need to be logged in');
-        }, 
-        addDining: async (parent, { DiningInput }, context) => {
-            if (context.user) {
-                return User.findOneAndUpdate(
-                    {_id: context.user._id},
-                    {
-                        $addToSet: { Dining: DiningInput},
-                    },
-                    {
-                        new: true,
-                        runValidators: true,
-                    }
-                );
-            }
-
-            throw new AuthenticationError('you need to be logged in');
-        }, 
-        addRecurringInvestment: async (parent, { RecurringInvestmentInput }, context) => {
-            if (context.user) {
-                return User.findOneAndUpdate(
-                    {_id: context.user._id},
-                    {
-                        $addToSet: { RecurringInvestment: RecurringInvestmentInput},
+                        $addToSet: { [`budget.recurringInvestment`]: RecurringInvestmentInput.input},
                     },
                     {
                         new: true,
