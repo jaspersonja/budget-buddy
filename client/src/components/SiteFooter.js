@@ -17,7 +17,7 @@ export default function SiteFooter() {
               </Col>
               <Col span={10}>
                 <Divider orientation='left'>About Us</Divider>
-                <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
+                <Text>Budget Buddy is an app that allows you to see your net income all in one place. From seeing expenses from bills, shopping, dining all the way to recurring investments! Budget buddy was created in order to make viewing your financials so much easier by including taxes in income and displaying all expenses in a user friendly balance sheet. As a group we wanted to create an app for those who want or need to budget their expenses better. We all have things we need to pay for or want to buy. Budget Buddy if here to help you with that.</Text>
               </Col>
             </Row>
         </>
